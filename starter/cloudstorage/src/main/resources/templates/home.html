@@ -28,17 +28,17 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
-                <form th:action="@{/file/upload}" action="#" enctype="multipart/form-data" method="POST">
+                <form th:action="@{/file}" action="#" enctype="multipart/form-data" method="POST">
                     <div class="container">
                         <div class="row" style="margin: 1em;">
                             <div class="col-sm-2">
-                                <label for="fileUpload">Upload a New File:</label>
+                                <label for="fileUpload">Upload a New File(max 3MB): </label>
                             </div>
                             <div class="col-sm-6">
                                 <input type="file" class="form-control-file" id="fileUpload" name="fileUpload">
                             </div>
                             <div class="col-sm-4">
-                                <button type="submit" class="btn btn-dark">Upload</button>
+                                <button type="submit" class="btn btn-dark" value="Upload">Upload</button>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                             <th style="width: 60%" scope="col">Description</th>
                         </tr>
                         </thead>
-                        <!--                                notes - list data note one time in notes-->
+
                         <tbody th:each="note: ${notes}">
                         <tr>
                             <td>
@@ -117,7 +117,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form th:object="${newNote}" th:action="@{/note/add}" action="#" method="POST">
+                                <form th:object="${newNote}" th:action="@{/note}" action="#" method="POST">
                                     <input th:field="*{noteId}" type="hidden" name="noteId" id="note-id">
                                     <div class="form-group">
                                         <label for="note-title" class="col-form-label">Title</label>
@@ -195,7 +195,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form th:action="@{/credential/add}" th:object="${newCredential}" action="#"
+                                <form th:action="@{/credential}" th:object="${newCredential}" action="#"
                                       method="POST">
                                     <input th:field="*{credentialId}" type="hidden" name="credentialId"
                                            id="credential-id">
