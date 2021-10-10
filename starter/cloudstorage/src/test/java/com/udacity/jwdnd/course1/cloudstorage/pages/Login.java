@@ -18,7 +18,6 @@ public class Login {
 
     public Login(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
-
     }
 
     public void login(String username, String password){

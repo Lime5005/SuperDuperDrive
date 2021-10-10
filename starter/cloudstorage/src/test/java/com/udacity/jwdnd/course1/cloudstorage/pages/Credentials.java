@@ -63,6 +63,7 @@ public class Credentials {
 
         credentialSubmit.submit();
     }
+
     public void editCredential(String changeUrl, String changeUsername, String changePassword, WebDriver driver) throws InterruptedException {
         this.wait = new WebDriverWait(driver, 1);
         Thread.sleep(1000);

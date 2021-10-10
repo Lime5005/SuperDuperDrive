@@ -20,7 +20,6 @@ public class Result {
 
     public Result(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
-
     }
 
     public void clickSuccessResult() throws InterruptedException {
