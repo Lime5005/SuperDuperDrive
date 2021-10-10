@@ -21,12 +21,12 @@ public class CredentialService {
         this.encryptionService = encryptionService;
     }
 
-    //GET Credentials By UserId
+    // Read
     public List<Credential> getCredentialsByUserId(Integer userId) {
-        return credentialMapper.getCredentialByUserId(userId);
+        return credentialMapper.getByUserId(userId);
     }
 
-    // INSERT or UPDATE Credential
+    // Create / Update
     public boolean insertOrUpdateCredential(CredentialDto newCredential, String username) {
 
         Integer userId = userService.getUserByUsername(username).getUserId();
@@ -49,18 +49,16 @@ public class CredentialService {
             credential.setUrl(url);
             credential.setUsername(usernameForUrl);
             credential.setPassword(encryptedPassword);
-
-            //add credential
-            credentialMapper.addCredential(credential);
+            credentialMapper.add(credential);
         } else {
-            credentialMapper.updateCredential(credentialId, url, usernameForUrl,encodedKey, encryptedPassword);
+            credentialMapper.update(credentialId, url, usernameForUrl,encodedKey, encryptedPassword);
         }
         return true;
     }
 
-    //DELETE Credential
+    // Delete
     public boolean deleteCredential(Integer credentialId){
-        credentialMapper.deleteCredential(credentialId);
+        credentialMapper.delete(credentialId);
         return true;
     }
 }

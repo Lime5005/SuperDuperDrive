@@ -18,19 +18,19 @@ public class FileService {
         this.userMapper = userMapper;
     }
 
+    // Read
     public String[] getFilesListByUserId(Integer userId){
-        return fileMapper.getFilesListByUserId(userId);
+        return fileMapper.getListByUserId(userId);
 
     }
+
     public File getFileByName(String fileName){
-        return fileMapper.getFileByName(fileName);
+        return fileMapper.getByName(fileName);
     }
 
+    // Create
     public boolean uploadFile(MultipartFile multipartFile, Integer userId){
-
-
         File newFile = new File();
-
         try {
             String fileName= multipartFile.getOriginalFilename();
             byte[] bytes = multipartFile.getBytes();
@@ -43,17 +43,16 @@ public class FileService {
             newFile.setFileData(bytes);
             newFile.setFileSize(fileSize);
 
-            fileMapper.addFile(newFile);
+            fileMapper.add(newFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return true;
     }
 
+    // Delete
     public boolean deleteFile(String fileName){
-        fileMapper.deleteFile(fileName);
+        fileMapper.delete(fileName);
         return true;
     }
 

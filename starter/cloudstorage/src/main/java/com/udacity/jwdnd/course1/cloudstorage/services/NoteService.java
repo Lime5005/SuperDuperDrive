@@ -18,45 +18,35 @@ public class NoteService {
         this.userService = userService;
     }
 
-    // GET Note by user id
+    // Read
     public List<Note> getNotesByUserId(Integer userId){
-
         return noteMapper.getNotesByUserId(userId);
-
     }
 
-    // GET All Notes
     public List<Note> getAllNotes(){
         return noteMapper.getAllNotes();
     }
 
-    // INSERT OR UPDATE notes
+    // Create / Update
     public boolean insertOrUpdateNote(NoteDto newNote, String username){
 
-        //for get user id
         Integer userId = userService.getUserByUsername(username).getUserId();
-        if (newNote.getNoteId()==null){
 
-            // add new note
+        if (newNote.getNoteId() == null) {
             Note note = new Note();
             note.setUserId(userId);
             note.setNoteTitle(newNote.getNoteTitle());
             note.setNoteDescription(newNote.getNoteDescription());
-            noteMapper.addNote(note);
-
-
-        }else{
-
-            //update note
-            noteMapper.updateNote(newNote.getNoteId(), newNote.getNoteTitle(), newNote.getNoteDescription());
-
+            noteMapper.add(note);
+        } else {
+            noteMapper.update(newNote.getNoteId(), newNote.getNoteTitle(), newNote.getNoteDescription());
         }
-
         return true;
     }
 
+    // Delete
     public boolean deleteNote(Integer noteId){
-        noteMapper.deleteNote(noteId);
+        noteMapper.delete(noteId);
         return true;
     }
 
