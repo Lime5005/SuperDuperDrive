@@ -23,6 +23,9 @@ public class NoteController {
         boolean success = false;
         int errorType = 1;
         String username = authentication.getName();
+        if (newNote.getNoteDescription().length() > 1000) {
+            return "error-400";
+        }
 
         success = noteService.insertOrUpdateNote(newNote, username);
 

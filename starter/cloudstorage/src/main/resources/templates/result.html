@@ -26,6 +26,10 @@
         <h1 class="display-5">Error</h1>
         <span>This is duplicate file. Click <a id="errorResult3" th:href="@{/home}">here</a> to continue.</span>
     </div>
+    <div class="alert alert-danger fill-parent" th:if="${not success} and ${errorType == 4}" >
+        <h1 class="display-5">Error</h1>
+        <span>Note size limit: 1000 characters. Click <a id="errorResult4" th:href="@{/home}">here</a> to continue.</span>
+    </div>
 </div>
 </body>
 </html>
