@@ -16,7 +16,7 @@ public class Result {
     private WebElement errorResult2;
 
     @FindBy(css = "#errorResult3")
-    private WebElement errorResult4;
+    private WebElement errorResult3;
 
     public Result(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);

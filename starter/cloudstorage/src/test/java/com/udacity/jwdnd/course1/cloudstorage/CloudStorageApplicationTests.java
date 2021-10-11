@@ -96,4 +96,13 @@ class CloudStorageApplicationTests {
 		credentialsPage.deleteCredential(driver);
 	}
 
+	@Test
+	public void test_logoutAndRedirect() throws InterruptedException {
+		this.test_loginAndSignUp();
+		Logout logout = new Logout(driver);
+		logout.logout(driver);
+		driver.get(baseURL + "/home");
+		Thread.sleep(5000); // Redirect to login page.
+	}
+
 }
