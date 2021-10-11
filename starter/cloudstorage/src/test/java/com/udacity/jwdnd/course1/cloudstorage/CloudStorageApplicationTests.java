@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CloudStorageApplicationTests {
 
@@ -98,11 +100,17 @@ class CloudStorageApplicationTests {
 
 	@Test
 	public void test_logoutAndRedirect() throws InterruptedException {
+		//1, Given
 		this.test_loginAndSignUp();
+		//2, When
 		Logout logout = new Logout(driver);
 		logout.logout(driver);
 		driver.get(baseURL + "/home");
-		Thread.sleep(5000); // Redirect to login page.
+		Thread.sleep(1000); // Redirect to login page.
+
+		//3, Then
+		String currentUrl = driver.getCurrentUrl();
+		assertEquals(baseURL + "/login", currentUrl);
 	}
 
 }
